@@ -28,8 +28,8 @@ let luckSettings = { player: 'fair', bot: 'fair' };
 // Dùng hàm này để điều chỉnh tỉ lệ thắng/thua
 // Ví dụ: blackjack.setLuck({ player: 'win', bot: 'fair' });
 exports.setLuck = function(obj) {
-    if (obj ? .player) luckSettings.player = obj.player;
-    if (obj ? .bot) luckSettings.bot = obj.bot;
+    if (obj && obj.player) luckSettings.player = obj.player;
+    if (obj && obj.bot) luckSettings.bot = obj.bot;
 };
 
 // ===== PHẦN 4: LOGIC BÀI =====
