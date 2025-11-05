@@ -1,62 +1,62 @@
 # Blackjack Bit
 
-Minimal project that includes a Discord blackjack command example and a small bot launcher.
+Dự án bot Discord tối giản bao gồm lệnh chơi Blackjack và trình khởi chạy bot.
 
-## Current state (analysis)
-- The repository previously contained a single starter file `main.js` (previously empty). This repo now includes a Blackjack command implementation and a working launcher (`launcher.js`) plus supporting files.
-- The app is a minimal Discord bot example using discord.js v14 with a `/blackjack` slash command.
+## Trạng thái hiện tại
+- Ban đầu repository chỉ có một file `main.js` (trống). Hiện tại đã bao gồm lệnh Blackjack hoàn chỉnh và trình khởi chạy (`launcher.js`) cùng các file hỗ trợ khác.
+- Ứng dụng là một bot Discord tối giản sử dụng discord.js v14 với lệnh slash `/blackjack`.
 
-## Features
-- Slash command `/blackjack` to start a single-player game of Blackjack against a dealer (bot).
-- Interactive buttons for gameplay: Hit, Stand, Double.
-- In-memory currency named `Lv` (non-persistent). Players start with a default balance and can place a bet.
-- Luck configuration API to bias outcomes for player and dealer: `win`, `lose`, or `fair`.
-- Safety: no infinite loops; retry attempts limited to 2 when the code attempts biased outcome crafting.
-- Vietnamese comments throughout the implementation for easier localization and understanding.
+## Tính năng
+- Lệnh slash `/blackjack` để bắt đầu ván chơi Blackjack một người với nhà cái (bot).
+- Nút bấm tương tác: Rút bài (Hit), Dừng lại (Stand), Gấp đôi (Double).
+- Tiền tệ trong bộ nhớ có tên `Lv` (không lưu trữ). Người chơi bắt đầu với số dư mặc định và có thể đặt cược.
+- API cấu hình may mắn để điều chỉnh kết quả cho người chơi và nhà cái: `win`, `lose`, hoặc `fair`.
+- An toàn: không có vòng lặp vô hạn; giới hạn 2 lần thử khi tạo kết quả có điều chỉnh.
+- Bình luận tiếng Việt trong mã nguồn để dễ dàng đọc hiểu.
 
-Note: This repository is an example and does not persist balances — restart will reset all balances.
+Lưu ý: Repository này là ví dụ và không lưu trữ số dư - khởi động lại sẽ đặt lại tất cả số dư.
 
-## How to Run
+## Cách chạy
 
-Requirements
+Yêu cầu
 - Node.js 18+ (Discord.js v14).
 
-Configuration
-- Create a bot via the Discord Developer Portal and copy the bot token.
-- Determine a test guild ID (for quicker slash command registration) or omit to register globally.
+Cấu hình
+- Tạo bot qua Discord Developer Portal và sao chép token bot.
+- Xác định ID guild để test (để đăng ký lệnh slash nhanh hơn) hoặc bỏ qua để đăng ký toàn cầu.
 
-Environment variables (Windows PowerShell example):
+Biến môi trường (ví dụ Windows PowerShell):
 
 ```powershell
-$env:BOT_TOKEN = "YOUR_BOT_TOKEN"
-$env:GUILD_ID = "YOUR_TEST_GUILD_ID" # optional but recommended for fast registration
+$env:BOT_TOKEN = "TOKEN_BOT_CỦA_BẠN"
+$env:GUILD_ID = "ID_GUILD_TEST" # tùy chọn nhưng khuyến nghị để đăng ký nhanh
 npm install
 npm start
 ```
 
-Alternatively, create a `.env` file and run with a tool that loads env vars.
+Hoặc tạo file `.env` và chạy với công cụ đọc biến môi trường.
 
-Commands
-- `/blackjack` — starts a blackjack round. You'll be prompted to set a bet and then use the on-screen buttons: Hit, Stand, Double.
+Lệnh
+- `/blackjack` — bắt đầu ván Blackjack. Bạn sẽ được yêu cầu đặt cược và sau đó sử dụng các nút: Rút bài, Dừng lại, Gấp đôi.
 
-Luck settings
-- The blackjack command file exports a `setLuck` function you can require and call from code to set luck for `player` and `bot`:
+Cài đặt may mắn
+- File lệnh blackjack xuất hàm `setLuck` mà bạn có thể require và gọi từ mã để đặt may mắn cho `player` và `bot`:
 
 ```js
 const bj = require('./commands/blackjack');
-bj.setLuck({ player: 'fair', bot: 'fair' }); // values: 'win' | 'lose' | 'fair'
+bj.setLuck({ player: 'fair', bot: 'fair' }); // giá trị: 'win' | 'lose' | 'fair'
 ```
 
-This biases the underlying draw algorithm. The implementation will attempt at most 2 tries to craft a biased outcome; if unsuccessful it falls back to fair play.
+Điều này ảnh hưởng đến thuật toán rút bài. Chương trình sẽ thử tối đa 2 lần để tạo kết quả có điều chỉnh; nếu không thành công sẽ quay lại chơi công bằng.
 
-## Files added
-- `package.json` — Node project manifest and dependency list.
-- `launcher.js` — bot launcher and simple command registration. (keeps original `main.js` untouched)
-- `commands/blackjack.js` — Blackjack slash command implementation with buttons and Vietnamese comments.
+## File đã thêm
+- `package.json` — File manifest của dự án Node và danh sách dependency.
+- `launcher.js` — Trình khởi chạy bot và đăng ký lệnh đơn giản. (giữ nguyên `main.js`)
+- `commands/blackjack.js` — Triển khai lệnh slash Blackjack với nút bấm và bình luận tiếng Việt.
 
-## Notes & Limitations
-- Balances are stored in memory and reset when the bot restarts.
-- The luck system biases outcomes but does not guarantee them; it's implemented to avoid abusive deterministic outcomes.
-- This is a demo: review and secure tokens and permissions before running in production.
+## Ghi chú & Giới hạn
+- Số dư được lưu trong bộ nhớ và sẽ đặt lại khi khởi động lại bot.
+- Hệ thống may mắn ảnh hưởng đến kết quả nhưng không đảm bảo; được triển khai để tránh kết quả định sẵn có thể bị lạm dụng.
+- Đây là bản demo: kiểm tra và bảo mật token và quyền trước khi chạy trong môi trường sản xuất.
 
-If you'd like persistent storage (SQLite, JSON file, or DB) or multi-player tables, tell me and I can add it.
+Nếu bạn muốn lưu trữ cố định (SQLite, file JSON, hoặc DB) hoặc bàn chơi nhiều người, hãy cho tôi biết và tôi có thể thêm vào.
