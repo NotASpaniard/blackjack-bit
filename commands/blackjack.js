@@ -17,10 +17,10 @@ const START_BALANCE = 1000; // Mỗi người chơi bắt đầu với 1000 Lv n
 // Phần cài đặt luck (player, bot): 'win' | 'lose' | 'fair'
 let luckSettings = { player: 'fair', bot: 'fair' };
 
-module.exports.setLuck = function (obj) {
-  // Hàm để cấu hình luck bên ngoài: module.require(...).setLuck({player:'win', bot:'lose'})
-  if (obj?.player) luckSettings.player = obj.player;
-  if (obj?.bot) luckSettings.bot = obj.bot;
+module.exports.setLuck = function(obj) {
+    // Hàm để cấu hình luck bên ngoài: module.require(...).setLuck({player:'win', bot:'lose'})
+    if (obj ? .player) luckSettings.player = obj.player;
+    if (obj ? .bot) luckSettings.bot = obj.bot;
 };
 
 // Tạo bộ bài tiêu chuẩn

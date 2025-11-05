@@ -3,7 +3,7 @@
 Minimal project that includes a Discord blackjack command example and a small bot launcher.
 
 ## Current state (analysis)
-- The repository currently contains a single starter file `main.js` (previously empty) and now includes a Blackjack command implementation and supporting files.
+- The repository previously contained a single starter file `main.js` (previously empty). This repo now includes a Blackjack command implementation and a working launcher (`launcher.js`) plus supporting files.
 - The app is a minimal Discord bot example using discord.js v14 with a `/blackjack` slash command.
 
 ## Features
@@ -51,7 +51,7 @@ This biases the underlying draw algorithm. The implementation will attempt at mo
 
 ## Files added
 - `package.json` — Node project manifest and dependency list.
-- `main.js` — bot launcher and simple command registration.
+- `launcher.js` — bot launcher and simple command registration. (keeps original `main.js` untouched)
 - `commands/blackjack.js` — Blackjack slash command implementation with buttons and Vietnamese comments.
 
 ## Notes & Limitations
